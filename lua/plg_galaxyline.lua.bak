@@ -1,0 +1,166 @@
+local gl = require('galaxyline')
+local gls = gl.section
+gl.short_line_list = {'LuaTree', 'vista', 'dbui'}
+
+-- Colores adaptados a Gruvbox
+local colors = {
+  bg = '#3c3836', -- Color de fondo
+  fg = '#ebdbb2', -- Color de primer plano
+  yellow = '#fabd2f', -- Color amarillo
+  cyan = '#8ec07c', -- Color cyan
+  darkblue = '#458588', -- Color azul oscuro
+  green = '#b8bb26', -- Color verde
+  orange = '#fe8019', -- Color naranja
+  -- purple = '#d3869b', -- Color púrpura eliminado
+  magenta = '#d65d0e', -- Color magenta
+  grey = '#7c6f64', -- Color gris
+  blue = '#83a598', -- Color azul
+  red = '#fb4934' -- Color rojo
+}
+local gl = require('galaxyline')
+local gls = gl.section
+gl.short_line_list = {'LuaTree', 'vista', 'dbui'}
+
+
+
+local buffer_not_empty = function()
+  if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
+    return true
+  end
+  return false
+end
+
+gls.left[1] = {
+  FirstElement = {
+    provider = function() return '▋' end,
+    highlight = {colors.blue, colors.bg}
+  },
+}
+
+gls.left[2] = {
+  Space1 = {
+    provider = function() return ' ' end, -- Espacio antes del modo
+    highlight = {colors.grey, colors.bg} -- Cambia los colores aquí
+  },
+}
+
+gls.left[3] = {
+  ViMode = {
+    provider = function()
+      local alias = {n = 'NORMAL', i = 'INSERT', c = 'COMMAND', v = 'VISUAL', V = 'VISUAL LINE', [''] = 'VISUAL BLOCK'}
+      return alias[vim.fn.mode()]
+    end,
+    separator_highlight = {colors.orange, colors.bg}, -- Cambiado a verde
+    highlight = {colors.darkblue, colors.bg, 'bold'}, -- Cambiado a verde
+  },
+}
+
+gls.left[4] = {
+  Space2 = {
+    provider = function() return ' ' end, -- Espacio después del modo
+    highlight = {colors.grey, colors.bg} -- Cambia los colores aquí
+  },
+}
+
+gls.left[5] = {
+  FileIcon = {
+    provider = 'FileIcon',
+    condition = buffer_not_empty,
+    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg}, -- Color del icono de archivo
+  },
+}
+
+gls.left[6] = {
+  Space3 = {
+    provider = function() return ' ' end, -- Espacio después del icono del archivo
+    highlight = {colors.grey, colors.bg} -- Cambia los colores aquí
+  },
+}
+
+gls.left[7] = {
+  FileName = {
+    provider = {'FileName', 'FileSize'},
+    condition = buffer_not_empty,
+    separator_highlight = {colors.yellow, colors.bg}, -- Cambiado a amarillo
+    highlight = {colors.magenta, colors.bg} -- Color del nombre del archivo
+  }
+}
+
+-- Resto del código sigue igual...
+
+
+gls.left[8] = {
+  DiffModified = {
+    provider = 'DiffModified',
+    condition = checkwidth,
+    icon = ' ',
+    highlight = {colors.orange, colors.bg}, -- Color de modificado
+  }
+}
+gls.left[9] = {
+  DiffRemove = {
+    provider = 'DiffRemove',
+    condition = checkwidth,
+    icon = ' ',
+    highlight = {colors.red, colors.bg}, -- Color de eliminado
+  }
+}
+gls.left[10] = {
+  LeftEnd = {
+    provider = function() return '' end,
+    separator_highlight = {colors.green, colors.bg}, -- Cambiado a verde
+    highlight = {colors.green, colors.bg} -- Cambiado a verde
+  }
+}
+gls.left[11] = {
+  DiagnosticError = {
+    provider = 'DiagnosticError',
+    icon = '  ',
+    highlight = {colors.red, colors.bg} -- Color de error
+  }
+}
+gls.left[12] = {
+  Space = {
+    provider = function() return ' ' end,
+    highlight = {colors.grey, colors.bg} -- Cambia los colores aquí
+  }
+}
+gls.left[13] = {
+  DiagnosticWarn = {
+    provider = 'DiagnosticWarn',
+    icon = '  ',
+    highlight = {colors.blue, colors.bg}, -- Color de advertencia
+  }
+}
+gls.right[2] = {
+  LineInfo = {
+    provider = 'LineColumn',
+    separator = ' ',
+    separator_highlight = {colors.darkblue, colors.bg}, -- Cambiado a verde
+    highlight = {colors.grey, colors.bg}, -- Cambiado a verde
+  },
+}
+
+gls.right[4] = {
+  ScrollBar = {
+    provider = 'ScrollBar',
+    highlight = {colors.yellow, colors.bg}, -- Cambiado a verde
+  }
+}
+
+gls.short_line_left[1] = {
+  BufferType = {
+    provider = 'FileTypeName',
+    separator_highlight = {colors.orange, colors.bg}, -- Cambiado a verde
+    highlight = {colors.grey, colors.green} -- Cambiado a verde
+  }
+}
+
+gls.short_line_right[1] = {
+  BufferIcon = {
+    provider= 'BufferIcon',
+    separator_highlight = {colors.green, colors.bg}, -- Cambiado a verde
+    highlight = {colors.grey, colors.green} -- Cambiado a verde
+  }
+}
+
