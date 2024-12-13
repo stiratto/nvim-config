@@ -2,14 +2,10 @@
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
--- Definir una función `on_attach` para reutilizarla
 
 local on_attach = function(client, bufnr)
-    -- Deshabilita el formateo proporcionado por el LSP
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
-
-    -- Aquí puedes configurar otros comportamientos para el LSP, como autocompletado.
 end
 
 -- local on_attach = function(client, bufnr)
@@ -41,7 +37,7 @@ require("lspconfig").lua_ls.setup({
     flags = {
         debounce_text_changes = 150,
     },
-    on_attach = on_attach, -- Reutiliza la función on_attach
+    on_attach = on_attach,
 })
 
 require("lspconfig").ts_ls.setup({
@@ -52,16 +48,16 @@ require("lspconfig").ts_ls.setup({
     flags = {
         debounce_text_changes = 150,
     },
-    on_attach = on_attach, -- Reutiliza la función on_attach
+    on_attach = on_attach, 
 })
 
--- Configuración genérica para otros servidores LSP
+-- Generic config for others lsp servers
 local language_servers = require("lspconfig").util.available_servers()
 for _, ls in ipairs(language_servers) do
     if ls ~= "tsserver" then
         require("lspconfig")[ls].setup({
             capabilities = capabilities,
-            on_attach = on_attach, -- Reutiliza la función on_attach
+            on_attach = on_attach, 
         })
     end
 end
