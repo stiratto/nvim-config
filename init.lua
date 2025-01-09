@@ -1,28 +1,22 @@
 -- Cargar plugins
-package.path = package.path .. ";/home/stiratto/.config/nvim/plugins.lua"
-require("plugins")
-
-vim.o.background = "dark"
-vim.cmd([[colorscheme everforest]])
-
-require("remap")
-require("plg_cmp")
-require("lsp")
-require("plg_neocord")
-require("plg_conform")
-require("plg_telescope")
-require("plg_treesitter")
-require("extra")
-require("mason").setup()
+require("config.lazy")
+require('nvim-navic').setup()
 
 -- Cargar remapeos de teclas
-vim.cmd("luafile ~/.config/nvim/remap.lua")
+vim.cmd("luafile ~/.config/nvim/lua/remap.lua")
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
 vim.cmd("set foldmethod=indent")
-vim.opt.foldlevel = 99
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.fillchars = "fold: "
+vim.wo.foldnestmax = 3
+vim.wo.foldminlines = 1
+vim.wo.foldlevel = 1
+vim.wo.foldtext =
+[[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
 vim.g.loaded_perl_provider = 0
 vim.opt.compatible = false
 vim.opt.showmatch = true
@@ -39,6 +33,8 @@ vim.opt.modeline = true
 vim.opt.breakindent = true
 vim.opt.showbreak = "↳ "
 vim.opt.textwidth = 70
+vim.cmd.highlight('IndentLine guifg=#737575')
+vim.cmd.highlight('IndentLineCurrent guifg=#c0c2c2')
 vim.opt.shiftwidth = 3
 vim.opt.autoindent = true
 vim.opt.number = true
