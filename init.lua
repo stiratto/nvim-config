@@ -5,6 +5,19 @@ require('nvim-navic').setup()
 -- Cargar remapeos de teclas
 vim.cmd("luafile ~/.config/nvim/lua/remap.lua")
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+vim.o.background = 'dark'
+vim.cmd 'colorscheme gruvbox'
+
+
+for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
+   local default_diagnostic_handler = vim.lsp.handlers[method]
+   vim.lsp.handlers[method] = function(err, result, context, config)
+      if err ~= nil and err.code == -32802 then
+         return
+      end
+      return default_diagnostic_handler(err, result, context, config)
+   end
+end
 
 vim.cmd("set foldmethod=indent")
 vim.g.loaded_netrw = 1
@@ -26,8 +39,8 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
+vim.opt.tabstop = 3
+vim.opt.softtabstop = 3
 vim.opt.expandtab = true
 vim.opt.modeline = true
 vim.opt.breakindent = true

@@ -14,9 +14,7 @@ return {
   { "nvimdev/indentmini.nvim",             config = function() require("indentmini").setup() end },
   { "hrsh7th/cmp-nvim-lsp-signature-help" },
   { "ajmwagar/vim-deus" },
-  { "SmiteshP/nvim-navic" },
   { "hrsh7th/cmp-nvim-lsp-document-symbol" },
-  { "neanias/everforest-nvim" },
   { "folke/snacks.nvim" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "LunarVim/bigfile.nvim" },
@@ -35,7 +33,6 @@ return {
   { "nvim-telescope/telescope.nvim",   tag = "0.1.8",                                            requires = { { "nvim-lua/plenary.nvim" } } },
   { "nmac427/guess-indent.nvim",       config = function() require("guess-indent").setup({}) end },
   { "preservim/nerdcommenter" },
-  { "nvim-lua/plenary.nvim" },
   {
     "goolord/alpha-nvim",
     -- dependencies = { 'echasnovski/mini.icons' },
@@ -49,7 +46,6 @@ return {
       )
     end,
   },
-  { "sainnhe/everforest" },
   { "neovim/nvim-lspconfig" },
   { "williamboman/mason.nvim" },
   { "hrsh7th/cmp-path" },
