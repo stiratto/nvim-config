@@ -3,14 +3,14 @@ This is my NVIM config, it's made to run on potato computers, it runs on mine so
 It uses [lazy.nvim](https://github.com/folke/lazy.nvim) to manage plugins easily.
 
 # Plugins
-nvim-lsp
-nvim-cmp 
-mason
-gruvbox
-telescope
-treesitter
-alpha-nvim (to style dashboards)
-null-ls
-luasnip
-and others
+- nvim-lsp
+- nvim-cmp 
+- mason
+- gruvbox
+- telescope
+- treesitter
+- alpha-nvim (to style dashboards)
+- null-ls
+- luasnip
+- and others
 
