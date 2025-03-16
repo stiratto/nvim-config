@@ -1,16 +1,6 @@
 return {
-    "nvim-telescope/telescope.nvim",
-    config = function()
-        require("telescope").setup({
-            defaults = {
-                debug = true,
-                file_ignore_patterns = { "%.git/", "node_modules/" }, -- Customize ignore patterns if needed
-                prompt_prefix = "🔍 ",
-                sorting_strategy = "ascending",
-                -- Agregar bordes a las ventanas
-                border = true,
-                borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }, -- Puedes personalizar los caracteres del borde
-            },
-        })
-    end
+   "nvim-telescope/telescope.nvim",
+   dependencies = {
+      "nvim-lua/plenary.nvim"
+   }
 }

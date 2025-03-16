@@ -26,7 +26,6 @@ return {
   { "nvim-tree/nvim-web-devicons" },
   { "ryanoasis/vim-devicons" },
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
-  { "nvim-telescope/telescope.nvim",   tag = "0.1.8",                                            requires = { { "nvim-lua/plenary.nvim" } } },
   { "nmac427/guess-indent.nvim",       config = function() require("guess-indent").setup({}) end },
   { "preservim/nerdcommenter" },
   {

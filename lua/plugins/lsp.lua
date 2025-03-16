@@ -25,6 +25,20 @@ return {
             on_attach = on_attach
         })
 
+        require("lspconfig").volar.setup({
+            on_attach = on_attach,
+            init_options = {
+                vue = {
+                    -- disable hybrid mode
+                    hybridMode = false,
+                },
+            },
+        })
+
+        require("lspconfig").phpactor.setup({
+            on_attach = on_attach
+        })
+
         require("lspconfig").ast_grep.setup({
             on_attach = on_attach
         })
