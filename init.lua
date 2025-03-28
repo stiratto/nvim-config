@@ -1,13 +1,21 @@
 -- Cargar plugins
 require("config.lazy")
-require('java').setup()
-require('lspconfig').jdtls.setup({})
 require('nvim-navic').setup()
 require("extra")
 
+vim.api.nvim_create_augroup('transparent_signs', { clear = true })
+vim.api.nvim_create_autocmd('ColorScheme', {
+   group = 'transparent_signs',
+   callback = function()
+      vim.cmd('highlight SignColumn guibg=NONE')
+   end,
+})
+
+
+
 -- Cargar remapeos de teclas
 vim.cmd("luafile ~/.config/nvim/lua/remap.lua")
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 vim.o.background = 'dark'
 vim.opt.termguicolors = true
-vim.cmd 'colorscheme catppuccin-mocha'
+vim.cmd 'colorscheme rose-pine-main'
+vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'Normal' }) -- line to fix de background color border

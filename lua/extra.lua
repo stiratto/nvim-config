@@ -1,25 +1,19 @@
--- vim.api.nvim_create_autocmd("FileType", {
---     pattern = { "typescript", "css", "html", "javascript", "tsx", "jsx" },
---     callback = function()
---         vim.opt_local.tabstop = 1
---         vim.opt_local.shiftwidth = 1
---         vim.opt_local.expandtab = true
---     end,
--- })
---
 --  DIAGNOSTICS
+
+
 vim.diagnostic.config({
     virtual_text = false,
     signs = true,
     underline = false,
-    update_in_insert = false,
+    update_in_insert = false
 })
 
-vim.fn.sign_define('LspDiagnosticsSignError', {
-    text = '■',
-    texthl = 'DiagnosticError',
-    numhl = 'DiagnosticError',
-})
+
+local signs = { Error = " E", Warn = " W", Info = " I", Hint = " >" }
+for type, icon in pairs(signs) do
+    vim.fn.sign_define("DiagnosticSign" .. type, { text = icon, texthl = type, numhl = type })
+end
+vim.opt.signcolumn = "yes:2" -- Esto añade espacio extra al signcolumn
 
 vim.cmd("set foldmethod=indent")
 vim.g.loaded_netrw = 1

@@ -3,8 +3,8 @@
 return {
     "neovim/nvim-lspconfig",
     config = function()
-        -- local navic = require("nvim-navic")
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        require('java').setup()
 
         local on_attach = function(client, bufnr)
             vim.api.nvim_create_autocmd("BufWritePre", {
@@ -18,6 +18,9 @@ return {
             })
         end
 
+
+
+        require('lspconfig').jdtls.setup({})
         require("mason").setup()
         require("mason-lspconfig").setup()
 
@@ -35,13 +38,13 @@ return {
             },
         })
 
-        require("lspconfig").phpactor.setup({
-            on_attach = on_attach
-        })
+        -- require("lspconfig").phpactor.setup({
+        --     on_attach = on_attach
+        -- })
 
-        require("lspconfig").ast_grep.setup({
-            on_attach = on_attach
-        })
+        -- require("lspconfig").ast_grep.setup({
+        --     on_attach = on_attach
+        -- })
 
         require("lspconfig").lua_ls.setup({
             capabilities = capabilities,

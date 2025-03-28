@@ -1,8 +1,6 @@
 return {
     "hrsh7th/nvim-cmp",
     config = function()
-        -- ~/.config/nvim/lua/plg_cmp.lua
-
         local cmp = require("cmp")
         local luasnip = require("luasnip")
 
@@ -20,8 +18,11 @@ return {
         }
 
         cmp.setup({
-            performance = {
-                debounce = 150, -- Ajusta el tiempo de espera para las sugerencias
+            window = {
+                documentation = cmp.config.window.bordered(),
+                completion = cmp.config.window.bordered({
+                    winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None'
+                }),
             },
 
             snippet = {
