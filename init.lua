@@ -14,8 +14,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 
 
 -- Cargar remapeos de teclas
-vim.cmd("luafile ~/.config/nvim/lua/remap.lua")
+vim.cmd("luafile " .. vim.fn.stdpath("config") .. "/lua/remap.lua")
 vim.o.background = 'dark'
 vim.opt.termguicolors = true
-vim.cmd 'colorscheme rose-pine-main'
+vim.cmd 'colorscheme alduin'
 vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'Normal' }) -- line to fix de background color border
